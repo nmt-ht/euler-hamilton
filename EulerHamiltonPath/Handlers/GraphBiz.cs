@@ -31,7 +31,7 @@ namespace EulerHamiltonPath.Handlers
             if (!HamiltonianCylceTraverse(adjacencyMatrix, path, 1))
                 return 0;
 
-            printSolution(path, adjacencyMatrix.N);
+            PrintSolutioResultn(path, adjacencyMatrix.N);
 
             return 1;
         }
@@ -113,7 +113,7 @@ namespace EulerHamiltonPath.Handlers
 
         static int[] path;
 
-        static bool isSafe(int v, AdjacencyMatrix graph, int[] path, int pos)
+        static bool IsSafeToConnect(int v, AdjacencyMatrix graph, int[] path, int pos)
         {
             if (graph.Array[path[pos - 1], v] == 0)
                 return false;
@@ -137,7 +137,7 @@ namespace EulerHamiltonPath.Handlers
 
             for (int v = 1; v < adjacencyMatrix.N; v++)
             {
-                if (isSafe(v, adjacencyMatrix, path, pos))
+                if (IsSafeToConnect(v, adjacencyMatrix, path, pos))
                 {
                     path[pos] = v;
 
@@ -151,10 +151,9 @@ namespace EulerHamiltonPath.Handlers
             return false;
         }
 
-        private static void printSolution(int[] path, int v)
+        private static void PrintSolutioResultn(int[] path, int v)
         {
-            Console.WriteLine("Solution Exists: Following" +
-                            " is one Hamiltonian Cycle");
+            Console.WriteLine("Ton tai it nhat mot chu trinh: ");
             for (int i = 0; i < v; i++)
                 Console.Write(" " + path[i] + " ");
 
